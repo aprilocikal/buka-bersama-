@@ -34,9 +34,45 @@ export default function RegisterModal({ close }) {
     }
 
     setLoading(true);
+
+    // ── Cek apakah nama sudah terdaftar (case-insensitive) ──
+    const { data: existing, error: checkError } = await supabase
+      .from("peserta")
+      .select("id")
+      .ilike("nama", nama.trim())
+      .limit(1);
+
+    if (checkError) {
+      setLoading(false);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: checkError.message,
+        confirmButtonColor: "#c8a87a",
+        background: "#1a2540",
+        color: "#eee6db",
+      });
+      return;
+    }
+
+    if (existing && existing.length > 0) {
+      setLoading(false);
+      Swal.fire({
+        icon: "warning",
+        title: "Already Registered!",
+        text: `"${nama.trim()}" has already been registered. Each name can only register once.`,
+        confirmButtonColor: "#c8a87a",
+        background: "#1a2540",
+        color: "#eee6db",
+      });
+      return;
+    }
+
+    // ── Nama belum ada, lanjut insert ──
     const { error } = await supabase
       .from("peserta")
-      .insert([{ nama, angkatan, status: keterangan }]);
+      .insert([{ nama: nama.trim(), angkatan, status: keterangan }]);
+
     setLoading(false);
 
     if (error) {
@@ -88,7 +124,6 @@ export default function RegisterModal({ close }) {
           to { opacity: 1; }
         }
 
-        /* ── Bottom sheet — dark navy ── */
         .rm-sheet {
           background: #1a2540;
           border-radius: 28px 28px 0 0;
@@ -110,7 +145,6 @@ export default function RegisterModal({ close }) {
           to { transform: translateY(0); opacity: 1; }
         }
 
-        /* Subtle radial glow inside sheet */
         .rm-sheet::before {
           content: '';
           position: absolute;
@@ -124,7 +158,6 @@ export default function RegisterModal({ close }) {
           z-index: 0;
         }
 
-        /* Drag handle */
         .rm-handle {
           width: 40px;
           height: 4px;
@@ -135,7 +168,6 @@ export default function RegisterModal({ close }) {
           z-index: 1;
         }
 
-        /* Header */
         .rm-header {
           margin-bottom: 24px;
           position: relative;
@@ -173,15 +205,12 @@ export default function RegisterModal({ close }) {
           font-style: italic;
           color: #c8a87a;
         }
-
-        /* Divider line under header */
         .rm-header-line {
           margin-top: 16px;
           height: 1px;
           background: rgba(200,168,122,0.12);
         }
 
-        /* Field group */
         .rm-field {
           margin-bottom: 20px;
           position: relative;
@@ -198,7 +227,10 @@ export default function RegisterModal({ close }) {
           display: block;
         }
 
-        /* Input */
+        /* ── Input wrapper with icon ── */
+        .rm-input-wrap {
+          position: relative;
+        }
         .rm-input {
           width: 100%;
           padding: 14px 16px;
@@ -219,7 +251,23 @@ export default function RegisterModal({ close }) {
           background: rgba(255,255,255,0.08);
         }
 
-        /* Generation pills */
+        /* ── Duplicate warning hint ── */
+        .rm-input-hint {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-top: 7px;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          color: rgba(200,168,122,0.5);
+          letter-spacing: 0.2px;
+        }
+        .rm-input-hint svg {
+          flex-shrink: 0;
+          opacity: 0.7;
+        }
+
         .rm-gen-grid {
           display: flex;
           flex-wrap: wrap;
@@ -251,7 +299,6 @@ export default function RegisterModal({ close }) {
           box-shadow: 0 4px 14px rgba(200,168,122,0.28);
         }
 
-        /* Status toggle */
         .rm-status-toggle {
           display: flex;
           gap: 10px;
@@ -288,7 +335,6 @@ export default function RegisterModal({ close }) {
           font-weight: 700;
         }
 
-        /* Section divider */
         .rm-divider {
           height: 1px;
           background: rgba(200,168,122,0.1);
@@ -297,7 +343,6 @@ export default function RegisterModal({ close }) {
           z-index: 1;
         }
 
-        /* Submit button */
         .rm-btn-submit {
           width: 100%;
           padding: 17px;
@@ -338,7 +383,6 @@ export default function RegisterModal({ close }) {
           transform: none;
         }
 
-        /* Cancel button */
         .rm-btn-cancel {
           width: 100%;
           padding: 16px;
@@ -361,7 +405,6 @@ export default function RegisterModal({ close }) {
         }
         .rm-btn-cancel:active { transform: translateY(1px); }
 
-        /* Spinner */
         .rm-spinner {
           display: inline-block;
           width: 14px;
@@ -398,14 +441,23 @@ export default function RegisterModal({ close }) {
             {/* Nickname */}
             <div className="rm-field">
               <label className="rm-label">Nickname</label>
-              <input
-                className="rm-input"
-                type="text"
-                placeholder="Enter your nickname"
-                value={nama}
-                onChange={(e) => setNama(e.target.value)}
-                required
-              />
+              <div className="rm-input-wrap">
+                <input
+                  className="rm-input"
+                  type="text"
+                  placeholder="Enter your nickname"
+                  value={nama}
+                  onChange={(e) => setNama(e.target.value)}
+                  required
+                />
+              </div>
+              {/* hint text */}
+              <p className="rm-input-hint">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                Each nickname can only be registered once
+              </p>
             </div>
 
             {/* Generation */}
@@ -450,7 +502,7 @@ export default function RegisterModal({ close }) {
 
             <button type="submit" className="rm-btn-submit" disabled={loading}>
               {loading && <span className="rm-spinner" />}
-              {loading ? "Registering..." : "✦  Register Now"}
+              {loading ? "Checking & Registering..." : "✦  Register Now"}
             </button>
           </form>
 

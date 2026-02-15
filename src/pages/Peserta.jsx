@@ -503,7 +503,7 @@ export default function Peserta() {
           </div>
           <div className="pa-stat-card">
             <span className="pa-stat-number">{notAttending}</span>
-            <span className="pa-stat-label">Not Attending</span>
+            <span className="pa-stat-label">Absent</span>
           </div>
           <div className="pa-stat-card">
             <span className="pa-stat-number">{filteredData.length}</span>
