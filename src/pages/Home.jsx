@@ -265,6 +265,57 @@ export default function Home() {
           transform: translateY(-1px);
         }
 
+        /* ── NEW: Gallery button ── */
+        .hm-btn-gallery {
+          width: 100%;
+          padding: 14px;
+          border-radius: 100px;
+          border: 1.5px solid rgba(200,168,122,0.4);
+          background: rgba(200,168,122,0.07);
+          color: #c8a87a;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          letter-spacing: 0.3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .hm-btn-gallery:hover {
+          background: rgba(200,168,122,0.14);
+          border-color: rgba(200,168,122,0.7);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 16px rgba(200,168,122,0.2);
+        }
+        .hm-btn-gallery-icon {
+          font-size: 15px;
+          line-height: 1;
+        }
+
+        /* ── Divider between secondary and gallery btn ── */
+        .hm-btn-divider {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: 100%;
+        }
+        .hm-btn-divider-line {
+          flex: 1;
+          height: 1px;
+          background: rgba(200,168,122,0.18);
+        }
+        .hm-btn-divider-text {
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: rgba(200,168,122,0.35);
+          white-space: nowrap;
+        }
+
         .hm-scroll {
           position: relative;
           z-index: 1;
@@ -420,7 +471,7 @@ export default function Home() {
 
               .hm-about-closing { 
         margin-top: 4px; 
-        text-align: center;   /* ini untuk center horizontal */
+        text-align: center;
       }
 
       .hm-about-closing-text {
@@ -431,8 +482,7 @@ export default function Home() {
         color: #5a4535;
         line-height: 1.8;
         font-weight: 400;
-
-        text-align: center;   /* memastikan teks center */
+        text-align: center;
       }
 
 
@@ -557,6 +607,22 @@ export default function Home() {
               onClick={() => navigate("/peserta")}
             >
               View Participants
+            </button>
+
+            {/* ── Divider ── */}
+            <div className="hm-btn-divider">
+              <div className="hm-btn-divider-line" />
+              <span className="hm-btn-divider-text">Kenangan</span>
+              <div className="hm-btn-divider-line" />
+            </div>
+
+            {/* ── Gallery Button ── */}
+            <button
+              className="hm-btn-gallery"
+              onClick={() => navigate("/galeri")}
+            >
+              <span className="hm-btn-gallery-icon">🖼</span>
+              Lihat Galeri Foto
             </button>
           </div>
 
