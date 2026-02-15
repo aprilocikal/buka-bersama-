@@ -789,7 +789,7 @@ export default function Home() {
               className="hm-btn-gallery"
               onClick={() => navigate("/galeri")}
             >
-              <span className="hm-btn-gallery-icon">🖼</span>
+              <span className="hm-btn-gallery-icon"></span>
               Lihat Galeri Foto
             </button>
           </div>
