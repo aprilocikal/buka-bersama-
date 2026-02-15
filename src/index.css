@@ -1,0 +1,287 @@
+:root {
+  --navy: #212f52;
+  --cream: #eee6db;
+  --cream-dark: #d2b589;
+  --white: #feffff;
+  --black: #000000;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+}
+
+/* container mobile */
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* hero */
+.hero {
+  margin-top: 40px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: #555;
+}
+
+/* card modern */
+.card {
+  background: var(--white);
+  padding: 18px;
+  border-radius: 14px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* button primary */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  margin-top: 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--navy);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* button secondary */
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--cream-dark);
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.logo {
+  width: 140px;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+/* MODAL OVERLAY */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+/* MODAL BOX */
+.modal {
+  background: #feffff;
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+
+  border-radius: 10px;
+
+  border: 1px solid #d2b589;
+
+  background: #feffff;
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+
+/* saat focus */
+.modal input:focus,
+.modal select:focus {
+  border: 1px solid #212f52;
+
+  box-shadow: 0 0 0 3px rgba(33, 47, 82, 0.15);
+}
+
+/* LABEL */
+.modal label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* FORCE CLEAN INPUT STYLE (FIX NICKNAME BORDER ISSUE) */
+.modal input[type="text"],
+.modal select {
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  padding: 12px;
+
+  margin-top: 6px;
+  margin-bottom: 14px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--cream-dark);
+
+  background-color: var(--white);
+
+  font-size: 16px;
+
+  outline: none;
+
+  box-shadow: none;
+
+}
+
+
+/* FOCUS STYLE */
+.modal input[type="text"]:focus,
+.modal select:focus {
+
+  border: 1px solid var(--navy);
+
+  box-shadow: 0 0 0 3px rgba(33, 47, 82, 0.15);
+
+}
+
+/* FINAL HARD RESET INPUT STYLE */
+
+.modal input[type="text"]{
+
+  all: unset;
+
+  box-sizing: border-box;
+
+  width: 100%;
+
+  padding: 12px;
+
+  margin-top: 6px;
+  margin-bottom: 14px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--cream-dark);
+
+  background-color: var(--white);
+
+  font-size: 16px;
+
+  font-family: inherit;
+
+}
+
+
+/* focus state */
+.modal input[type="text"]:focus{
+
+  border: 1px solid var(--navy);
+
+  box-shadow: 0 0 0 3px rgba(33,47,82,0.15);
+
+}
+
+/* ================= */
+/* NAVY GENERATION BUTTON */
+/* ================= */
+
+.generation-buttons{
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+}
+
+
+.gen-btn{
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  border: 1px solid var(--cream-dark);
+
+  background: var(--white);
+
+  color: var(--navy);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+}
+
+
+/* hover */
+
+.gen-btn:hover{
+
+  background: rgba(33,47,82,0.08);
+
+}
+
+
+/* ACTIVE NAVY */
+
+.gen-btn.active{
+
+  background: var(--navy) !important;
+
+  color: var(--white) !important;
+
+  border: 1px solid var(--navy) !important;
+
+  box-shadow: 0 4px 12px rgba(33,47,82,0.25);
+
+}
+
+
+/* click animation */
+
+.gen-btn:active{
+
+  transform: scale(0.96);
+
+}
