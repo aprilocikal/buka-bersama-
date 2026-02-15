@@ -584,7 +584,7 @@ export default function Home() {
           <p className="hm-about-p">
             Kegiatan Buka Bersama ini diselenggarakan sebagai sarana untuk
             mempererat tali silaturahmi serta memperkuat rasa kebersamaan di
-            antara seluruh peserta. Momentum bulan suci Ramadhan menjadi waktu
+            antara seluruh alumni maupun alumnus. Momentum bulan suci Ramadhan menjadi waktu
             yang penuh makna untuk saling berkumpul, menjalin kembali kedekatan,
             serta memperkuat hubungan yang telah terbangun. Melalui kebersamaan
             ini, diharapkan tercipta suasana yang hangat dan penuh keberkahan,

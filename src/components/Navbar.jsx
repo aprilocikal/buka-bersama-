@@ -63,6 +63,7 @@ export default function Navbar() {
           filter: brightness(1.05);
         }
 
+
         /* Divider line between logos and text */
         .nb-divider {
           width: 1px;
@@ -186,7 +187,7 @@ export default function Navbar() {
             <div className="nb-logos">
               <img src="/logokiri.png"  alt="" className="nb-logo-side" />
               <img src="/logo5.png"     alt="Logo Utama" className="nb-logo-center" />
-              <img src="/logokanan.jpeg" alt="" className="nb-logo-side" />
+              <img src="/logoikama.jpeg" alt="" className="nb-logo-side" />
             </div>
 
             {/* Divider */}
