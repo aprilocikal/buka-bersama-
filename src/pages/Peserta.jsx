@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
+import PesertaDetailModal from "./PesertaDetailModal";
 
 const daftarAngkatan = [
   { label: "All", value: "All" },
@@ -20,6 +21,8 @@ export default function Peserta() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("All");
   const [animKey, setAnimKey] = useState(0);
+  // ── NEW: selected peserta for modal ──
+  const [selectedPeserta, setSelectedPeserta] = useState(null);
 
   async function fetchData() {
     setLoading(true);
@@ -71,7 +74,6 @@ export default function Peserta() {
           overflow-x: hidden;
         }
 
-        /* ── Radial glow like hero ── */
         .pa-root::before {
           content: '';
           position: fixed;
@@ -95,7 +97,6 @@ export default function Peserta() {
           z-index: 0;
         }
 
-        /* ── Corner brackets (matching hero) ── */
         .pa-corner {
           position: fixed;
           width: 40px;
@@ -109,7 +110,6 @@ export default function Peserta() {
         .pa-corner-bl { bottom: 24px; left: 16px; border-bottom: 1.5px solid #c8a87a; border-left: 1.5px solid #c8a87a; }
         .pa-corner-br { bottom: 24px; right: 16px; border-bottom: 1.5px solid #c8a87a; border-right: 1.5px solid #c8a87a; }
 
-        /* ── Floating stars ── */
         .pa-star {
           position: fixed;
           color: #c8a87a;
@@ -128,7 +128,6 @@ export default function Peserta() {
           50% { opacity: 0.6; transform: scale(1.3); }
         }
 
-        /* ── Header ── */
         .pa-header {
           position: relative;
           z-index: 1;
@@ -177,7 +176,6 @@ export default function Peserta() {
           margin-bottom: 28px;
         }
 
-        /* ── Stats ── */
         .pa-stats {
           display: flex;
           gap: 10px;
@@ -215,7 +213,6 @@ export default function Peserta() {
           letter-spacing: 0.3px;
         }
 
-        /* ── Filter chips ── */
         .pa-filter-wrap {
           position: relative;
           z-index: 1;
@@ -266,7 +263,6 @@ export default function Peserta() {
           box-shadow: 0 4px 14px rgba(200,168,122,0.3);
         }
 
-        /* ── List card ── */
         .pa-card {
           position: relative;
           z-index: 1;
@@ -303,6 +299,7 @@ export default function Peserta() {
         .pa-table-body::-webkit-scrollbar-track { background: transparent; }
         .pa-table-body::-webkit-scrollbar-thumb { background: rgba(200,168,122,0.3); border-radius: 100px; }
 
+        /* ── Row: now clickable ── */
         .pa-row {
           display: grid;
           grid-template-columns: 32px 1fr 1.5fr 80px;
@@ -311,10 +308,29 @@ export default function Peserta() {
           align-items: center;
           gap: 8px;
           animation: rowIn 0.3s ease both;
-          transition: background 0.15s;
+          transition: background 0.15s, transform 0.12s;
+          cursor: pointer;
+          -webkit-tap-highlight-color: transparent;
         }
         .pa-row:last-child { border-bottom: none; }
-        .pa-row:hover { background: rgba(200,168,122,0.05); }
+        .pa-row:hover {
+          background: rgba(200,168,122,0.08);
+        }
+        .pa-row:active {
+          background: rgba(200,168,122,0.12);
+          transform: scale(0.99);
+        }
+
+        /* ── Tap hint ripple on row ── */
+        .pa-row::after {
+          content: '›';
+          position: absolute;
+          right: 18px;
+          color: rgba(200,168,122,0.3);
+          font-size: 16px;
+          opacity: 0;
+          transition: opacity 0.15s;
+        }
 
         @keyframes rowIn {
           from { opacity: 0; transform: translateX(-8px); }
@@ -375,7 +391,18 @@ export default function Peserta() {
           flex-shrink: 0;
         }
 
-        /* ── Empty / Loading ── */
+        /* ── Tap hint text ── */
+        .pa-tap-hint {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          font-size: 10px;
+          color: rgba(200,168,122,0.4);
+          padding: 10px 0 2px;
+          letter-spacing: 0.3px;
+          animation: fadeUp 0.55s 0.3s ease both;
+        }
+
         .pa-empty {
           padding: 52px 24px;
           text-align: center;
@@ -403,7 +430,6 @@ export default function Peserta() {
           40% { transform: scale(1); opacity: 1; }
         }
 
-        /* ── Footer ── */
         .pa-footer {
           position: relative;
           z-index: 1;
@@ -501,6 +527,11 @@ export default function Peserta() {
           </div>
         </div>
 
+        {/* Tap hint */}
+        {!loading && filteredData.length > 0 && (
+          <p className="pa-tap-hint">✦ Tap a row to see participant detail</p>
+        )}
+
         {/* Table */}
         <div className="pa-card">
           <div className="pa-table-head">
@@ -531,6 +562,7 @@ export default function Peserta() {
                   className="pa-row"
                   key={item.id}
                   style={{ animationDelay: `${index * 45}ms` }}
+                  onClick={() => setSelectedPeserta(item)} // ← open modal
                 >
                   <span className="pa-num">{index + 1}</span>
                   <span className="pa-name">{item.nama}</span>
@@ -553,6 +585,12 @@ export default function Peserta() {
           </button>
         </div>
       </div>
+
+      {/* ── Modal ── */}
+      <PesertaDetailModal
+        peserta={selectedPeserta}
+        onClose={() => setSelectedPeserta(null)}
+      />
     </>
   );
 }
