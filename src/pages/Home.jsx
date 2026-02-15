@@ -1,4 +1,4 @@
-import logo from "/logokanan.jpeg";
+import logo from "/logokanan.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import RegisterModal from "../components/RegisterModal";
