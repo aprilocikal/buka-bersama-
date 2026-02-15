@@ -9,6 +9,10 @@ import Navbar from "../components/Navbar";
 ───────────────────────────────────────────── */
 const PHOTOS = [
   { id: "231", file: "231.jpeg", year: 2023 },
+  { id: "232", file: "232.jpeg", year: 2023 },
+  { id: "233", file: "233.jpeg", year: 2023 },
+  { id: "234", file: "234.jpeg", year: 2023 },
+  { id: "235", file: "235.jpeg", year: 2023 },
   { id: "241", file: "241.jpeg", year: 2024 },
   { id: "242", file: "242.jpeg", year: 2024 },
   { id: "243", file: "243.jpeg", year: 2024 },
@@ -22,6 +26,8 @@ const PHOTOS = [
   { id: "254", file: "254.jpeg", year: 2025 },
   { id: "255", file: "255.jpeg", year: 2025 },
   { id: "256", file: "256.jpeg", year: 2025 },
+  { id: "257", file: "257.jpeg", year: 2025 },
+  { id: "258", file: "258.jpeg", year: 2025 },
 ];
 
 const FILTERS = ["Semua", "2023", "2024", "2025"];

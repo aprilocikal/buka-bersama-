@@ -161,7 +161,6 @@ export default function Home() {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* ── UPGRADED: Fraunces for main title ── */
         .hm-title {
           position: relative;
           z-index: 1;
@@ -265,7 +264,6 @@ export default function Home() {
           transform: translateY(-1px);
         }
 
-        /* ── NEW: Gallery button ── */
         .hm-btn-gallery {
           width: 100%;
           padding: 14px;
@@ -295,7 +293,6 @@ export default function Home() {
           line-height: 1;
         }
 
-        /* ── Divider between secondary and gallery btn ── */
         .hm-btn-divider {
           display: flex;
           align-items: center;
@@ -383,7 +380,6 @@ export default function Home() {
           white-space: nowrap;
         }
 
-        /* ── UPGRADED: Fraunces for section title ── */
         .hm-about-title {
           font-family: 'Fraunces', serif;
           font-optical-sizing: auto;
@@ -469,22 +465,201 @@ export default function Home() {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-              .hm-about-closing { 
-        margin-top: 4px; 
-        text-align: center;
-      }
+        .hm-about-closing {
+          margin-top: 4px;
+          text-align: center;
+        }
 
-      .hm-about-closing-text {
-        font-family: 'Fraunces', serif;
-        font-optical-sizing: auto;
-        font-size: 15px;
-        font-style: italic;
-        color: #5a4535;
-        line-height: 1.8;
-        font-weight: 400;
-        text-align: center;
-      }
+        .hm-about-closing-text {
+          font-family: 'Fraunces', serif;
+          font-optical-sizing: auto;
+          font-size: 15px;
+          font-style: italic;
+          color: #5a4535;
+          line-height: 1.8;
+          font-weight: 400;
+          text-align: center;
+        }
 
+        /* ══════════════════════════════
+           LOKASI / MAPS SECTION
+        ══════════════════════════════ */
+        .hm-location {
+          background: #212f52;
+          padding: 56px 28px 52px;
+          position: relative;
+          overflow: hidden;
+        }
+        .hm-location::before {
+          content: '';
+          position: absolute;
+          top: -1px; left: 0; right: 0;
+          height: 44px;
+          background: #eee6db;
+          clip-path: ellipse(55% 100% at 50% 0%);
+        }
+        .hm-location-glow {
+          position: absolute;
+          bottom: 0; left: 50%;
+          transform: translateX(-50%);
+          width: 280px; height: 180px;
+          background: radial-gradient(ellipse, rgba(200,168,122,0.1) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .hm-location-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 12px;
+          margin-top: 18px;
+          position: relative;
+          z-index: 1;
+        }
+        .hm-location-eline {
+          flex: 1; height: 1px;
+          background: rgba(200,168,122,0.25);
+        }
+        .hm-location-etext {
+          font-size: 9px;
+          font-weight: 700;
+          letter-spacing: 3.5px;
+          text-transform: uppercase;
+          color: rgba(200,168,122,0.65);
+          white-space: nowrap;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .hm-location-title {
+          font-family: 'Fraunces', serif;
+          font-optical-sizing: auto;
+          font-size: 30px;
+          font-weight: 900;
+          color: #eee6db;
+          line-height: 1.1;
+          margin-bottom: 8px;
+          letter-spacing: -0.5px;
+          position: relative;
+          z-index: 1;
+        }
+        .hm-location-title em {
+          font-style: italic;
+          color: #c8a87a;
+        }
+        .hm-location-accent {
+          width: 44px;
+          height: 3px;
+          background: #c8a87a;
+          border-radius: 100px;
+          margin-bottom: 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        /* Info card above map */
+        .hm-location-info {
+          background: rgba(200,168,122,0.07);
+          border: 1px solid rgba(200,168,122,0.22);
+          border-radius: 16px;
+          padding: 16px 18px;
+          margin-bottom: 16px;
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          position: relative;
+          z-index: 1;
+        }
+        .hm-location-pin {
+          width: 38px; height: 38px;
+          border-radius: 50%;
+          background: rgba(200,168,122,0.14);
+          border: 1px solid rgba(200,168,122,0.35);
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
+          font-size: 17px;
+        }
+        .hm-location-detail {}
+        .hm-location-name {
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          color: #eee6db;
+          margin-bottom: 3px;
+          line-height: 1.3;
+        }
+        .hm-location-addr {
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 11px;
+          font-weight: 400;
+          color: rgba(238,230,219,0.5);
+          line-height: 1.6;
+        }
+        .hm-location-plus {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: rgba(200,168,122,0.12);
+          border: 1px solid rgba(200,168,122,0.25);
+          border-radius: 100px;
+          padding: 3px 9px;
+          margin-top: 6px;
+        }
+        .hm-location-plus-text {
+          font-size: 9px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: #c8a87a;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Map embed */
+        .hm-map-wrap {
+          position: relative;
+          z-index: 1;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 1px solid rgba(200,168,122,0.22);
+          box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+          height: 240px;
+        }
+        .hm-map-wrap iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+          display: block;
+          filter: brightness(0.9) saturate(0.9);
+        }
+
+        /* Open in Maps button */
+        .hm-open-maps {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          width: 100%;
+          padding: 14px;
+          margin-top: 14px;
+          border-radius: 100px;
+          border: 1.5px solid rgba(200,168,122,0.38);
+          background: rgba(200,168,122,0.08);
+          color: #c8a87a;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          letter-spacing: 0.3px;
+          position: relative;
+          z-index: 1;
+        }
+        .hm-open-maps:hover {
+          background: rgba(200,168,122,0.16);
+          border-color: rgba(200,168,122,0.65);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 18px rgba(200,168,122,0.2);
+        }
 
         /* ══════════════════════════════
            BOTTOM CTA
@@ -498,14 +673,7 @@ export default function Home() {
           gap: 12px;
           position: relative;
           overflow: hidden;
-        }
-        .hm-bottom::before {
-          content: '';
-          position: absolute;
-          top: -1px; left: 0; right: 0;
-          height: 44px;
-          background: #eee6db;
-          clip-path: ellipse(55% 100% at 50% 0%);
+          border-top: 1px solid rgba(200,168,122,0.12);
         }
         .hm-bottom-title {
           font-family: 'Fraunces', serif;
@@ -516,7 +684,7 @@ export default function Home() {
           text-align: center;
           position: relative;
           z-index: 1;
-          margin-top: 24px;
+          margin-top: 8px;
           margin-bottom: 2px;
           letter-spacing: -0.3px;
         }
@@ -621,7 +789,7 @@ export default function Home() {
               className="hm-btn-gallery"
               onClick={() => navigate("/galeri")}
             >
-              <span className="hm-btn-gallery-icon"></span>
+              <span className="hm-btn-gallery-icon">🖼</span>
               Lihat Galeri Foto
             </button>
           </div>
@@ -684,6 +852,63 @@ export default function Home() {
               dan berbagi keberkahan."
             </p>
           </div>
+        </section>
+
+        {/* ── LOKASI ── */}
+        <section className="hm-location">
+          <div className="hm-location-glow" />
+
+          <div className="hm-location-eyebrow">
+            <div className="hm-location-eline" />
+            <span className="hm-location-etext">Lokasi Acara</span>
+            <div className="hm-location-eline" />
+          </div>
+
+          <h2 className="hm-location-title">
+            Temukan
+            <br />
+            <em>Kami di Sini</em>
+          </h2>
+          <div className="hm-location-accent" />
+
+          {/* Info Card */}
+          <div className="hm-location-info">
+            <div className="hm-location-pin">📍</div>
+            <div className="hm-location-detail">
+              <div className="hm-location-name">
+                Pondok Pesantren Modern Al-Muchtari
+              </div>
+              <div className="hm-location-addr">
+                Jl. Cilotoh, Lemah Duhur, Kec. Caringin,<br />
+                Kabupaten Bogor, Jawa Barat 16730
+              </div>
+              <div className="hm-location-plus">
+                <span className="hm-location-plus-text">Plus Code: 7RRQ+V3F</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Map Embed */}
+          <div className="hm-map-wrap">
+            <iframe
+              title="Lokasi Buka Bersama Akbar"
+              src="https://www.google.com/maps?q=7RRQ%2BV3F+Caringin+Bogor+Jawa+Barat&output=embed"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          {/* Open in Google Maps */}
+          <a
+            className="hm-open-maps"
+            href="https://maps.google.com/?q=7RRQ+V3F+Caringin+Bogor"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span></span>
+            Buka di Google Maps
+          </a>
         </section>
 
         {/* ── BOTTOM CTA ── */}
