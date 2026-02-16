@@ -1,6 +1,7 @@
 import logo from "/logokanan.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Images, MessageSquareHeart, Star } from "lucide-react";
 import RegisterModal from "../components/RegisterModal";
 import Navbar from "../components/Navbar";
 
@@ -230,6 +231,10 @@ export default function Home() {
           box-shadow: 0 6px 24px rgba(200,168,122,0.35);
           position: relative;
           overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
         }
         .hm-btn-primary::after {
           content: '';
@@ -257,6 +262,10 @@ export default function Home() {
           cursor: pointer;
           transition: all 0.2s ease;
           letter-spacing: 0.2px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
         }
         .hm-btn-secondary:hover {
           border-color: rgba(200,168,122,0.6);
@@ -288,9 +297,30 @@ export default function Home() {
           transform: translateY(-1px);
           box-shadow: 0 4px 16px rgba(200,168,122,0.2);
         }
-        .hm-btn-gallery-icon {
-          font-size: 15px;
-          line-height: 1;
+
+        .hm-btn-saran {
+          width: 100%;
+          padding: 13px;
+          border-radius: 100px;
+          border: 1.5px solid rgba(238,230,219,0.15);
+          background: rgba(238,230,219,0.05);
+          color: rgba(238,230,219,0.55);
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          letter-spacing: 0.3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .hm-btn-saran:hover {
+          background: rgba(238,230,219,0.1);
+          border-color: rgba(238,230,219,0.3);
+          color: rgba(238,230,219,0.85);
+          transform: translateY(-1px);
         }
 
         .hm-btn-divider {
@@ -556,7 +586,6 @@ export default function Home() {
           z-index: 1;
         }
 
-        /* Info card above map */
         .hm-location-info {
           background: rgba(200,168,122,0.07);
           border: 1px solid rgba(200,168,122,0.22);
@@ -576,9 +605,8 @@ export default function Home() {
           border: 1px solid rgba(200,168,122,0.35);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0;
-          font-size: 17px;
+          color: #c8a87a;
         }
-        .hm-location-detail {}
         .hm-location-name {
           font-family: 'Plus Jakarta Sans', sans-serif;
           font-size: 13px;
@@ -613,7 +641,6 @@ export default function Home() {
           font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Map embed */
         .hm-map-wrap {
           position: relative;
           z-index: 1;
@@ -631,7 +658,6 @@ export default function Home() {
           filter: brightness(0.9) saturate(0.9);
         }
 
-        /* Open in Maps button */
         .hm-open-maps {
           display: flex;
           align-items: center;
@@ -673,7 +699,6 @@ export default function Home() {
           gap: 12px;
           position: relative;
           overflow: hidden;
-          border-top: 1px solid rgba(200,168,122,0.12);
         }
         .hm-bottom-title {
           font-family: 'Fraunces', serif;
@@ -684,7 +709,7 @@ export default function Home() {
           text-align: center;
           position: relative;
           z-index: 1;
-          margin-top: 8px;
+          margin-top: 0;
           margin-bottom: 2px;
           letter-spacing: -0.3px;
         }
@@ -697,13 +722,6 @@ export default function Home() {
           margin-bottom: 6px;
           letter-spacing: 0.5px;
           font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .hm-bottom .hm-btn-primary,
-        .hm-bottom .hm-btn-secondary {
-          position: relative;
-          z-index: 1;
-          max-width: 300px;
-          width: 100%;
         }
       `}</style>
 
@@ -723,12 +741,10 @@ export default function Home() {
           <div className="hm-corner hm-corner-tr" />
           <div className="hm-corner hm-corner-bl" />
           <div className="hm-corner hm-corner-br" />
-          <span className="hm-star hm-star-1">✦</span>
-          <span className="hm-star hm-star-2">✦</span>
-          <span className="hm-star hm-star-3">✦</span>
-          <span className="hm-star hm-star-4">✦</span>
-          <span className="hm-star hm-star-5">·</span>
-          <span className="hm-star hm-star-6">·</span>
+          <Star className="hm-star hm-star-1" size={13} />
+          <Star className="hm-star hm-star-2" size={9} />
+          <Star className="hm-star hm-star-3" size={9} />
+          <Star className="hm-star hm-star-4" size={13} />
 
           <div className="hm-logo-wrap">
             <div className="hm-logo-ring">
@@ -768,16 +784,17 @@ export default function Home() {
               className="hm-btn-primary"
               onClick={() => setOpenModal(true)}
             >
-              ✦ &nbsp;Registration
+              <Star size={14} fill="currentColor" />
+              Registrasi
             </button>
             <button
               className="hm-btn-secondary"
               onClick={() => navigate("/peserta")}
             >
-              View Participants
+              Lihat Peserta
             </button>
 
-            {/* ── Divider ── */}
+            {/* ── Divider Kenangan ── */}
             <div className="hm-btn-divider">
               <div className="hm-btn-divider-line" />
               <span className="hm-btn-divider-text">Kenangan</span>
@@ -789,8 +806,17 @@ export default function Home() {
               className="hm-btn-gallery"
               onClick={() => navigate("/galeri")}
             >
-              <span className="hm-btn-gallery-icon"></span>
+              <Images size={15} />
               Lihat Galeri Foto
+            </button>
+
+            {/* ── Saran & Pengaduan Button ── */}
+            <button
+              className="hm-btn-saran"
+              onClick={() => navigate("/saran")}
+            >
+              <MessageSquareHeart size={14} />
+              Saran &amp; Pengaduan
             </button>
           </div>
 
@@ -873,7 +899,9 @@ export default function Home() {
 
           {/* Info Card */}
           <div className="hm-location-info">
-            <div className="hm-location-pin">📍</div>
+            <div className="hm-location-pin">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
             <div className="hm-location-detail">
               <div className="hm-location-name">
                 Pondok Pesantren Modern Al-Muchtari
@@ -906,7 +934,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span></span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
             Buka di Google Maps
           </a>
         </section>
