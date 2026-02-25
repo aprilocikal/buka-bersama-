@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -8,6 +8,8 @@ import Navbar from "../components/Navbar";
    last digit  = photo index
 ───────────────────────────────────────────── */
 const PHOTOS = [
+  { id: "221", file: "221.jpeg", year: 2022 },
+  { id: "222", file: "222.jpeg", year: 2022 },
   { id: "231", file: "231.jpeg", year: 2023 },
   { id: "232", file: "232.jpeg", year: 2023 },
   { id: "233", file: "233.jpeg", year: 2023 },
@@ -30,7 +32,7 @@ const PHOTOS = [
   { id: "258", file: "258.jpeg", year: 2025 },
 ];
 
-const FILTERS = ["Semua", "2023", "2024", "2025"];
+const FILTERS = ["Semua", "2022", "2023", "2024", "2025"];
 
 export default function Galeri() {
   const navigate = useNavigate();
@@ -77,8 +79,34 @@ export default function Galeri() {
     return () => clearTimeout(t);
   }, [animKey]);
 
+  // Compute which indices in filtered array should be "wide" (span 2 cols)
+  // Pattern: every 3rd item is wide (indices 2,5,8,...)
+  // If the last item would end up alone in its row → auto-widen it too.
+  const wideMap = useMemo(() => {
+    const wide = new Array(filtered.length).fill(false);
+    let col = 0; // tracks current column position (0 or 1) in the 2-col grid
+    for (let i = 0; i < filtered.length; i++) {
+      if ((i + 1) % 3 === 0) {
+        wide[i] = true;
+        col = 0; // wide item fills the entire row, reset
+      } else {
+        col = (col + 1) % 2;
+      }
+    }
+    // If the last item ended up alone (col === 1), make it wide
+    if (col === 1) {
+      for (let i = filtered.length - 1; i >= 0; i--) {
+        if (!wide[i]) {
+          wide[i] = true;
+          break;
+        }
+      }
+    }
+    return wide;
+  }, [filtered]);
+
   // Year count summary
-  const yearCounts = [2023, 2024, 2025].map((y) => ({
+  const yearCounts = [2022, 2023, 2024, 2025].map((y) => ({
     year: y,
     count: PHOTOS.filter((p) => p.year === y).length,
   }));
@@ -243,6 +271,7 @@ export default function Galeri() {
         .gl-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
+          grid-auto-flow: dense;
           gap: 10px;
         }
         .gl-item {
@@ -255,7 +284,7 @@ export default function Galeri() {
           aspect-ratio: 4/3;
           transition: transform 0.22s ease, box-shadow 0.22s ease;
         }
-        .gl-item:nth-child(3n+1):not(:nth-child(1)) {
+        .gl-item-wide {
           grid-column: span 2;
           aspect-ratio: 16/9;
         }
@@ -493,8 +522,7 @@ export default function Galeri() {
                 className="gl-stat-card"
                 key={year}
                 onClick={() => handleFilter(String(year))}
-                style={{ cursor: "pointer" }}
-              >
+                style={{ cursor: "pointer" }}>
                 <div className="gl-stat-year">{year}</div>
                 <div className="gl-stat-count">{count} foto</div>
               </div>
@@ -509,8 +537,7 @@ export default function Galeri() {
               <button
                 key={f}
                 className={`gl-filter-btn${active === f ? " active" : ""}`}
-                onClick={() => handleFilter(f)}
-              >
+                onClick={() => handleFilter(f)}>
                 {f}
                 {f !== "Semua" && (
                   <span style={{ marginLeft: 6, opacity: 0.65 }}>
@@ -527,8 +554,8 @@ export default function Galeri() {
           <div className="gl-section-label">
             <div className="gl-section-line" />
             <span className="gl-section-text">
-              {active === "Semua" ? "Semua Tahun" : `Angkatan ${active}`} &mdash;{" "}
-              {filtered.length} Foto
+              {active === "Semua" ? "Semua Tahun" : `Angkatan ${active}`}{" "}
+              &mdash; {filtered.length} Foto
             </span>
             <div className="gl-section-line" />
           </div>
@@ -543,10 +570,9 @@ export default function Galeri() {
               {filtered.map((photo, idx) => (
                 <div
                   key={`${photo.id}-${animKey}`}
-                  className={`gl-item${visible ? " gl-anim-in" : ""}`}
+                  className={`gl-item${wideMap[idx] ? " gl-item-wide" : ""}${visible ? " gl-anim-in" : ""}`}
                   style={{ animationDelay: `${idx * 0.055}s` }}
-                  onClick={() => openLightbox(idx)}
-                >
+                  onClick={() => openLightbox(idx)}>
                   <img
                     src={`/galeri/${photo.file}`}
                     alt={`Foto Buka Bersama ${photo.year} - ${idx + 1}`}
@@ -574,8 +600,7 @@ export default function Galeri() {
         {lightbox !== null && (
           <div
             className="gl-lb-backdrop"
-            onClick={(e) => e.target === e.currentTarget && closeLightbox()}
-          >
+            onClick={(e) => e.target === e.currentTarget && closeLightbox()}>
             <div className="gl-lb-inner">
               <div className="gl-lb-top">
                 <span className="gl-lb-counter">
