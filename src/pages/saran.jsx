@@ -206,7 +206,7 @@ export default function Saran() {
           background: rgba(200,168,122,0.04);
           color: #eee6db;
           font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 13px;
+          font-size: 16px;
           font-weight: 400;
           line-height: 1.7;
           resize: none;
