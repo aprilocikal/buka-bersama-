@@ -11,12 +11,13 @@ export default function Navbar() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
 
         .nb-root {
-          position: sticky;
+          position: fixed;
           top: 0;
+          left: 50%;
+          transform: translateX(-50%);
           z-index: 100;
           width: 100%;
           max-width: 430px;
-          margin: 0 auto;
         }
 
         .nb-bar {
@@ -179,14 +180,16 @@ export default function Navbar() {
 
       <nav className="nb-root">
         <div className="nb-bar">
-
           {/* Brand */}
           <div className="nb-brand" onClick={() => navigate("/")}>
-
             {/* 3 logos */}
             <div className="nb-logos">
-              <img src="/logokiri.png"  alt="" className="nb-logo-side" />
-              <img src="/logo5.png"     alt="Logo Utama" className="nb-logo-center" />
+              <img src="/logokiri.png" alt="" className="nb-logo-side" />
+              <img
+                src="/logo5.png"
+                alt="Logo Utama"
+                className="nb-logo-center"
+              />
               <img src="/logoikama.jpeg" alt="" className="nb-logo-side" />
             </div>
 
@@ -198,7 +201,6 @@ export default function Navbar() {
               <span className="nb-brand-sub">Buka Bersama</span>
               <span className="nb-brand-name">Akbar 2026</span>
             </div>
-
           </div>
 
           {/* Actions */}
@@ -217,8 +219,7 @@ export default function Navbar() {
                   stroke="currentColor"
                   strokeWidth="2.2"
                   strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
+                  strokeLinejoin="round">
                   <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" />
                   <path d="M9 21V12h6v9" />
                 </svg>
@@ -226,7 +227,6 @@ export default function Navbar() {
               </button>
             )}
           </div>
-
         </div>
       </nav>
     </>

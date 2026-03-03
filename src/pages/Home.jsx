@@ -1,7 +1,7 @@
 import logo from "/logokanan.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Images, MessageSquareHeart, Star } from "lucide-react";
+import { Images, MessageSquareHeart, Star, Newspaper } from "lucide-react";
 import RegisterModal from "../components/RegisterModal";
 import Navbar from "../components/Navbar";
 
@@ -172,7 +172,7 @@ export default function Home() {
           color: #eee6db;
           line-height: 1.0;
           letter-spacing: -1.5px;
-          margin-bottom: 20px;
+          margin-bottom: 8px;
           animation: fadeUp 0.6s 0.35s ease both;
         }
         .hm-title em {
@@ -323,24 +323,40 @@ export default function Home() {
           transform: translateY(-1px);
         }
 
+        .hm-btn-berita {
+          width: 100%;
+          padding: 13px;
+          border-radius: 100px;
+          border: 1.5px solid rgba(200,168,122,0.25);
+          background: rgba(200,168,122,0.05);
+          color: rgba(200,168,122,0.7);
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          letter-spacing: 0.3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .hm-btn-berita:hover {
+          background: rgba(200,168,122,0.12);
+          border-color: rgba(200,168,122,0.5);
+          color: #c8a87a;
+          transform: translateY(-1px);
+        }
+
         .hm-btn-divider {
           display: flex;
           align-items: center;
-          gap: 8px;
           width: 100%;
         }
         .hm-btn-divider-line {
           flex: 1;
           height: 1px;
           background: rgba(200,168,122,0.18);
-        }
-        .hm-btn-divider-text {
-          font-size: 9px;
-          font-weight: 600;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          color: rgba(200,168,122,0.35);
-          white-space: nowrap;
         }
 
         .hm-scroll {
@@ -417,7 +433,7 @@ export default function Home() {
           font-weight: 900;
           color: #212f52;
           line-height: 1.05;
-          margin-bottom: 10px;
+          margin-bottom: 6px;
           letter-spacing: -0.5px;
         }
         .hm-about-accent {
@@ -425,7 +441,7 @@ export default function Home() {
           height: 3px;
           background: #c8a87a;
           border-radius: 100px;
-          margin-bottom: 24px;
+          margin-bottom: 14px;
         }
 
         .hm-about-p {
@@ -516,7 +532,7 @@ export default function Home() {
         ══════════════════════════════ */
         .hm-location {
           background: #212f52;
-          padding: 56px 28px 52px;
+          padding: 56px 28px 24px;
           position: relative;
           overflow: hidden;
         }
@@ -567,7 +583,7 @@ export default function Home() {
           font-weight: 900;
           color: #eee6db;
           line-height: 1.1;
-          margin-bottom: 8px;
+          margin-bottom: 5px;
           letter-spacing: -0.5px;
           position: relative;
           z-index: 1;
@@ -581,7 +597,7 @@ export default function Home() {
           height: 3px;
           background: #c8a87a;
           border-radius: 100px;
-          margin-bottom: 20px;
+          margin-bottom: 12px;
           position: relative;
           z-index: 1;
         }
@@ -621,24 +637,6 @@ export default function Home() {
           font-weight: 400;
           color: rgba(238,230,219,0.5);
           line-height: 1.6;
-        }
-        .hm-location-plus {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          background: rgba(200,168,122,0.12);
-          border: 1px solid rgba(200,168,122,0.25);
-          border-radius: 100px;
-          padding: 3px 9px;
-          margin-top: 6px;
-        }
-        .hm-location-plus-text {
-          font-size: 9px;
-          font-weight: 700;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          color: #c8a87a;
-          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .hm-map-wrap {
@@ -692,7 +690,7 @@ export default function Home() {
         ══════════════════════════════ */
         .hm-bottom {
           background: #212f52;
-          padding: 44px 28px 56px;
+          padding: 20px 28px 56px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -782,39 +780,39 @@ export default function Home() {
           <div className="hm-ctas">
             <button
               className="hm-btn-primary"
-              onClick={() => setOpenModal(true)}
-            >
+              onClick={() => setOpenModal(true)}>
               <Star size={14} fill="currentColor" />
               Registrasi
             </button>
             <button
               className="hm-btn-secondary"
-              onClick={() => navigate("/peserta")}
-            >
+              onClick={() => navigate("/peserta")}>
               Lihat Peserta
             </button>
 
-            {/* ── Divider Kenangan ── */}
+            {/* ── Divider ── */}
             <div className="hm-btn-divider">
-              <div className="hm-btn-divider-line" />
-              <span className="hm-btn-divider-text">Kenangan</span>
               <div className="hm-btn-divider-line" />
             </div>
 
             {/* ── Gallery Button ── */}
             <button
               className="hm-btn-gallery"
-              onClick={() => navigate("/galeri")}
-            >
+              onClick={() => navigate("/galeri")}>
               <Images size={15} />
               Lihat Galeri Foto
             </button>
 
-            {/* ── Saran & Pengaduan Button ── */}
+            {/* ── Berita Button ── */}
             <button
-              className="hm-btn-saran"
-              onClick={() => navigate("/saran")}
-            >
+              className="hm-btn-berita"
+              onClick={() => navigate("/berita")}>
+              <Newspaper size={14} />
+              Berita &amp; Informasi
+            </button>
+
+            {/* ── Saran & Pengaduan Button ── */}
+            <button className="hm-btn-saran" onClick={() => navigate("/saran")}>
               <MessageSquareHeart size={14} />
               Saran &amp; Pengaduan
             </button>
@@ -842,13 +840,9 @@ export default function Home() {
           <div className="hm-about-accent" />
 
           <p className="hm-about-p">
-            Kegiatan Buka Bersama ini diselenggarakan sebagai sarana untuk
-            mempererat tali silaturahmi serta memperkuat rasa kebersamaan di
-            antara seluruh alumni maupun alumnus. Momentum bulan suci Ramadhan menjadi waktu
-            yang penuh makna untuk saling berkumpul, menjalin kembali kedekatan,
-            serta memperkuat hubungan yang telah terbangun. Melalui kebersamaan
-            ini, diharapkan tercipta suasana yang hangat dan penuh keberkahan,
-            sehingga nilai persaudaraan dan kekeluargaan dapat terus terjaga.
+            Buka Bersama ini hadir untuk mempererat silaturahmi antar alumni di
+            bulan Ramadhan. Mari berkumpul kembali, menjaga persaudaraan, dan
+            berbagi keberkahan bersama.
           </p>
 
           <div className="hm-about-card">
@@ -859,14 +853,9 @@ export default function Home() {
               </span>
             </div>
             <p className="hm-about-card-text">
-              Pada kesempatan ini, Angkatan ke-5 Pondok Pesantren Modern
-              Al-Muchtari diberikan kepercayaan untuk menjadi panitia pelaksana
-              kegiatan Buka Bersama. Kesempatan ini menjadi pengalaman yang
-              berharga bagi kami untuk belajar bekerja sama, saling membantu,
-              dan bertanggung jawab dalam menyelenggarakan sebuah kegiatan
-              kebersamaan. Kami berharap melalui usaha dan kebersamaan ini,
-              acara Buka Bersama dapat menjadi momen yang menyenangkan,
-              bermakna, serta meninggalkan kesan baik bagi semua yang hadir.
+              Angkatan ke-5 Al-Muchtari dipercaya sebagai panitia pelaksana Buka
+              Bersama tahun ini. Semoga acara ini menjadi momen yang bermakna
+              dan berkesan bagi semua.
             </p>
             <p className="hm-about-card-author">— Improvity Generation</p>
           </div>
@@ -897,51 +886,72 @@ export default function Home() {
           </h2>
           <div className="hm-location-accent" />
 
-          {/* Info Card */}
           <div className="hm-location-info">
             <div className="hm-location-pin">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
             </div>
             <div className="hm-location-detail">
-              <div className="hm-location-name">
-                Pondok Pesantren Modern Al-Muchtari
-              </div>
+              <div className="hm-location-name">CIFOS CIAWI</div>
               <div className="hm-location-addr">
-                Jl. Cilotoh, Lemah Duhur, Kec. Caringin,<br />
-                Kabupaten Bogor, Jawa Barat 16730
-              </div>
-              <div className="hm-location-plus">
-                <span className="hm-location-plus-text">Plus Code: 7RRQ+V3F</span>
+                Jl. Raya Puncak No.477, Bendungan,
+                <br />
+                Kec. Ciawi, Kabupaten Bogor,
+                <br />
+                Jawa Barat 16720
               </div>
             </div>
           </div>
 
-          {/* Map Embed */}
           <div className="hm-map-wrap">
             <iframe
               title="Lokasi Buka Bersama Akbar"
-              src="https://www.google.com/maps?q=7RRQ%2BV3F+Caringin+Bogor+Jawa+Barat&output=embed"
+              src="https://www.google.com/maps?q=CIFOS+Depok&output=embed"
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
 
-          {/* Open in Google Maps */}
           <a
             className="hm-open-maps"
-            href="https://maps.google.com/?q=7RRQ+V3F+Caringin+Bogor"
+            href="https://maps.app.goo.gl/Z1Ddg2ebBKNLg7Wq9"
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+            rel="noopener noreferrer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" x2="21" y1="14" y2="3" />
+            </svg>
             Buka di Google Maps
           </a>
         </section>
 
         {/* ── BOTTOM CTA ── */}
         <div className="hm-bottom">
-          <h3 className="hm-bottom-title">Selamat menunaikan ibadah puasa 1447 Hijriah</h3>
+          <h3 className="hm-bottom-title">
+            Selamat menunaikan ibadah puasa 1447 Hijriah
+          </h3>
           <p className="hm-bottom-sub">
             Buka Bersama Akbar 2026 · Improvity Generation
           </p>

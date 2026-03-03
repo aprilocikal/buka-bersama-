@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  ArrowLeft,
-  Lock,
   Lightbulb,
   FileText,
   Megaphone,
@@ -12,6 +10,7 @@ import {
   RotateCcw,
   Loader2,
   ShieldCheck,
+  ArrowLeft,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 
@@ -19,7 +18,7 @@ export default function Saran() {
   const navigate = useNavigate();
   const [feedbackType, setFeedbackType] = useState("Saran");
   const [feedbackMsg, setFeedbackMsg] = useState("");
-  const [feedbackStatus, setFeedbackStatus] = useState("idle"); // idle | loading | success | error
+  const [feedbackStatus, setFeedbackStatus] = useState("idle");
 
   const handleSubmit = async () => {
     if (!feedbackMsg.trim()) return;
@@ -49,9 +48,9 @@ export default function Saran() {
   };
 
   const types = [
-    { key: "Saran", icon: <Lightbulb size={22} />, label: "Saran" },
-    { key: "Kritik", icon: <FileText size={22} />, label: "Kritik" },
-    { key: "Pengaduan", icon: <Megaphone size={22} />, label: "Pengaduan" },
+    { key: "Saran", icon: <Lightbulb size={18} />, label: "Saran" },
+    { key: "Kritik", icon: <FileText size={18} />, label: "Kritik" },
+    { key: "Pengaduan", icon: <Megaphone size={18} />, label: "Pengaduan" },
   ];
 
   const placeholders = {
@@ -68,51 +67,36 @@ export default function Saran() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         .sr-root {
-          min-height: 100vh;
+          height: 100vh;
+          height: 100dvh;
+          overflow: hidden;
           background: #212f52;
           font-family: 'Plus Jakarta Sans', sans-serif;
           max-width: 430px;
           margin: 0 auto;
-          overflow-x: hidden;
-        }
-
-        /* ── Back button ── */
-        .sr-back {
           display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 16px 24px;
-          background: transparent;
-          border: none;
-          color: rgba(200,168,122,0.7);
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 13px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: color 0.2s;
-          letter-spacing: 0.2px;
+          flex-direction: column;
         }
-        .sr-back:hover { color: #c8a87a; }
 
-        /* ── Hero header ── */
+        /* ── Header ── */
         .sr-header {
-          padding: 8px 28px 40px;
+          padding: 76px 24px 20px;
           position: relative;
+          flex-shrink: 0;
         }
         .sr-header-glow {
           position: absolute;
-          top: -40px; left: 50%;
+          top: 40px; left: 50%;
           transform: translateX(-50%);
-          width: 260px; height: 200px;
+          width: 280px; height: 180px;
           background: radial-gradient(ellipse, rgba(200,168,122,0.1) 0%, transparent 70%);
           pointer-events: none;
         }
-
         .sr-eyebrow {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-bottom: 14px;
+          margin-bottom: 10px;
         }
         .sr-eline { flex: 1; height: 1px; background: rgba(200,168,122,0.22); }
         .sr-etext {
@@ -122,402 +106,381 @@ export default function Saran() {
           text-transform: uppercase;
           color: rgba(200,168,122,0.6);
           white-space: nowrap;
-          font-family: 'Plus Jakarta Sans', sans-serif;
         }
-
         .sr-title {
           font-family: 'Fraunces', serif;
-          font-optical-sizing: auto;
-          font-size: 38px;
+          font-size: 32px;
           font-weight: 900;
           color: #eee6db;
           line-height: 1.0;
           letter-spacing: -1px;
-          margin-bottom: 14px;
+          margin-bottom: 8px;
         }
-        .sr-title em {
-          font-style: italic;
-          color: #c8a87a;
-        }
-
+        .sr-title em { font-style: italic; color: #c8a87a; }
         .sr-desc {
-          font-size: 13px;
-          color: rgba(238,230,219,0.55);
-          line-height: 1.8;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          margin-bottom: 20px;
+          font-size: 12px;
+          color: rgba(238,230,219,0.45);
+          line-height: 1.6;
+          margin-bottom: 12px;
         }
-
-        /* Anon badge */
         .sr-anon {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          background: rgba(200,168,122,0.09);
-          border: 1px solid rgba(200,168,122,0.22);
+          gap: 6px;
+          background: rgba(200,168,122,0.08);
+          border: 1px solid rgba(200,168,122,0.2);
           border-radius: 100px;
-          padding: 7px 16px;
+          padding: 5px 14px;
         }
         .sr-anon-icon { color: #c8a87a; flex-shrink: 0; }
         .sr-anon-text {
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 700;
           letter-spacing: 1.5px;
           text-transform: uppercase;
           color: #c8a87a;
-          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* ── Form card ── */
-        .sr-card {
-          background: #eee6db;
-          border-radius: 28px 28px 0 0;
-          padding: 36px 24px 48px;
-          min-height: calc(100vh - 280px);
-          position: relative;
+        /* ── Form area ── */
+        .sr-form {
+          padding: 0 24px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          min-height: 0;
         }
-        .sr-card::before {
-          content: '';
-          position: absolute;
-          top: -1px; left: 0; right: 0;
-          height: 36px;
-          background: #212f52;
-          clip-path: ellipse(52% 100% at 50% 0%);
-        }
-
-        /* Section label */
         .sr-label {
           display: block;
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 700;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: #8b6e4e;
-          margin-bottom: 12px;
-          margin-top: 8px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          color: rgba(200,168,122,0.55);
+          margin-bottom: 10px;
+          flex-shrink: 0;
         }
 
-        /* Type selector */
+        /* ── Type selector ── */
         .sr-types {
           display: flex;
-          gap: 10px;
-          margin-bottom: 28px;
+          gap: 8px;
+          margin-bottom: 20px;
+          flex-shrink: 0;
         }
         .sr-type-btn {
           flex: 1;
-          padding: 14px 8px 12px;
-          border-radius: 16px;
-          border: 1.5px solid rgba(33,47,82,0.15);
-          background: rgba(255,255,255,0.5);
-          color: #8b6e4e;
+          padding: 12px 6px 10px;
+          border-radius: 14px;
+          border: 1.5px solid rgba(200,168,122,0.15);
+          background: rgba(200,168,122,0.04);
+          color: rgba(238,230,219,0.5);
           font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 7px;
+          gap: 5px;
         }
         .sr-type-btn.active {
-          border-color: #212f52;
-          background: #212f52;
+          border-color: #c8a87a;
+          background: rgba(200,168,122,0.12);
           color: #c8a87a;
-          box-shadow: 0 6px 18px rgba(33,47,82,0.22);
+          box-shadow: 0 4px 16px rgba(200,168,122,0.15);
         }
         .sr-type-btn:hover:not(.active) {
-          border-color: rgba(33,47,82,0.3);
-          background: rgba(255,255,255,0.8);
-          color: #3d2e1e;
-        }
-        .sr-type-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          border-color: rgba(200,168,122,0.3);
+          color: rgba(238,230,219,0.7);
         }
 
-        /* Textarea */
+        /* ── Textarea ── */
         .sr-textarea {
           width: 100%;
-          min-height: 150px;
-          padding: 18px;
-          border-radius: 18px;
-          border: 1.5px solid rgba(33,47,82,0.15);
-          background: rgba(255,255,255,0.75);
-          color: #212f52;
+          flex: 1;
+          min-height: 0;
+          padding: 16px;
+          border-radius: 16px;
+          border: 1.5px solid rgba(200,168,122,0.15);
+          background: rgba(200,168,122,0.04);
+          color: #eee6db;
           font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 400;
-          line-height: 1.75;
+          line-height: 1.7;
           resize: none;
           outline: none;
-          transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s;
-          margin-bottom: 8px;
+          transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+          margin-bottom: 6px;
         }
         .sr-textarea:focus {
-          border-color: #c8a87a;
-          box-shadow: 0 0 0 3px rgba(200,168,122,0.15);
-          background: #fff;
+          border-color: rgba(200,168,122,0.5);
+          box-shadow: 0 0 0 3px rgba(200,168,122,0.08);
+          background: rgba(200,168,122,0.06);
         }
-        .sr-textarea::placeholder { color: rgba(33,47,82,0.3); }
+        .sr-textarea::placeholder { color: rgba(238,230,219,0.2); }
 
         .sr-counter {
-          font-size: 10px;
-          color: rgba(33,47,82,0.3);
+          font-size: 9px;
+          color: rgba(238,230,219,0.25);
           text-align: right;
-          margin-bottom: 20px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          margin-bottom: 14px;
+          flex-shrink: 0;
         }
         .sr-counter.warn { color: #c0773a; }
 
-        /* Error banner */
+        /* ── Error ── */
         .sr-error {
           display: flex;
           align-items: center;
-          gap: 10px;
-          font-size: 12px;
-          color: #b94040;
-          padding: 12px 14px;
-          background: rgba(185,64,64,0.08);
-          border: 1px solid rgba(185,64,64,0.2);
+          gap: 8px;
+          font-size: 11px;
+          color: #e87070;
+          padding: 10px 14px;
+          background: rgba(232,112,112,0.08);
+          border: 1px solid rgba(232,112,112,0.18);
           border-radius: 12px;
-          margin-bottom: 14px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          margin-bottom: 12px;
+          flex-shrink: 0;
         }
 
-        /* Submit */
+        /* ── Submit ── */
         .sr-submit {
           width: 100%;
-          padding: 17px;
+          padding: 15px;
           border-radius: 100px;
           border: none;
-          background: #212f52;
-          color: #c8a87a;
+          background: #c8a87a;
+          color: #212f52;
           font-family: 'Plus Jakarta Sans', sans-serif;
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 700;
           letter-spacing: 0.3px;
           cursor: pointer;
           transition: all 0.2s ease;
-          box-shadow: 0 6px 24px rgba(33,47,82,0.22);
+          box-shadow: 0 6px 24px rgba(200,168,122,0.3);
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 9px;
+          gap: 8px;
           position: relative;
           overflow: hidden;
+          flex-shrink: 0;
         }
         .sr-submit::after {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent);
+          background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
           pointer-events: none;
         }
         .sr-submit:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 10px 32px rgba(33,47,82,0.32);
-          background: #1a2540;
+          box-shadow: 0 10px 32px rgba(200,168,122,0.45);
         }
         .sr-submit:active { transform: translateY(0); }
-        .sr-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+        .sr-submit:disabled { opacity: 0.45; cursor: not-allowed; }
 
-        .sr-spin {
-          animation: spin 1s linear infinite;
-        }
+        .sr-spin { animation: spin 1s linear infinite; }
         @keyframes spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
 
-        /* Privacy note */
+        /* ── Privacy ── */
         .sr-privacy {
           display: flex;
-          align-items: flex-start;
-          gap: 9px;
-          margin-top: 18px;
-          padding: 12px 14px;
-          background: rgba(33,47,82,0.05);
+          align-items: center;
+          gap: 8px;
+          margin-top: 10px;
+          padding: 10px 14px;
+          background: rgba(200,168,122,0.04);
+          border: 1px solid rgba(200,168,122,0.1);
           border-radius: 12px;
+          flex-shrink: 0;
         }
-        .sr-privacy-icon { color: #8b6e4e; flex-shrink: 0; margin-top: 1px; }
+        .sr-privacy-icon { color: rgba(200,168,122,0.5); flex-shrink: 0; }
         .sr-privacy-text {
-          font-size: 11px;
-          color: #8b6e4e;
-          line-height: 1.7;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 10px;
+          color: rgba(238,230,219,0.35);
+          line-height: 1.6;
         }
 
-        /* ── Success State ── */
-        .sr-success {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 12px;
-          padding: 40px 20px 32px;
-          text-align: center;
-        }
-        .sr-success-ring {
-          width: 80px; height: 80px;
-          border-radius: 50%;
-          background: rgba(33,47,82,0.08);
-          border: 1.5px solid rgba(33,47,82,0.14);
+        /* ── Back button ── */
+        .sr-back-btn {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #212f52;
+          gap: 8px;
+          margin: 12px 24px 20px;
+          padding: 13px;
+          border-radius: 100px;
+          border: 1.5px solid rgba(238,230,219,0.15);
+          background: rgba(238,230,219,0.05);
+          color: rgba(238,230,219,0.55);
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+        .sr-back-btn:hover {
+          border-color: rgba(200,168,122,0.4);
+          color: #c8a87a;
+          transform: translateY(-1px);
+        }
+
+        /* ── Success ── */
+        .sr-success {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 24px;
+          text-align: center;
+        }
+        .sr-success-ring {
+          width: 72px; height: 72px;
+          border-radius: 50%;
+          background: rgba(200,168,122,0.1);
+          border: 1.5px solid rgba(200,168,122,0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #c8a87a;
           margin-bottom: 4px;
         }
         .sr-success-title {
           font-family: 'Fraunces', serif;
-          font-size: 26px;
+          font-size: 24px;
           font-weight: 900;
-          color: #212f52;
+          color: #eee6db;
           letter-spacing: -0.5px;
         }
         .sr-success-sub {
-          font-size: 13px;
-          color: #5a4535;
-          line-height: 1.75;
+          font-size: 12px;
+          color: rgba(238,230,219,0.5);
+          line-height: 1.7;
           max-width: 260px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .sr-success-again {
           margin-top: 8px;
           display: flex;
           align-items: center;
-          gap: 7px;
-          padding: 11px 24px;
+          gap: 6px;
+          padding: 10px 22px;
           border-radius: 100px;
-          border: 1.5px solid rgba(33,47,82,0.2);
+          border: 1.5px solid rgba(200,168,122,0.3);
           background: transparent;
-          color: #212f52;
+          color: #c8a87a;
           font-family: 'Plus Jakarta Sans', sans-serif;
           font-size: 12px;
           font-weight: 700;
           cursor: pointer;
           transition: all 0.2s ease;
-          letter-spacing: 0.2px;
         }
         .sr-success-again:hover {
-          background: #212f52;
-          color: #c8a87a;
-          border-color: #212f52;
+          background: rgba(200,168,122,0.12);
+          border-color: rgba(200,168,122,0.5);
         }
         .sr-success-home {
           display: flex;
           align-items: center;
-          gap: 7px;
-          padding: 11px 24px;
+          gap: 6px;
+          padding: 10px 22px;
           border-radius: 100px;
-          border: none;
-          background: #212f52;
-          color: #c8a87a;
+          border: 1.5px solid rgba(238,230,219,0.15);
+          background: transparent;
+          color: rgba(238,230,219,0.5);
           font-family: 'Plus Jakarta Sans', sans-serif;
           font-size: 12px;
-          font-weight: 700;
+          font-weight: 600;
           cursor: pointer;
           transition: all 0.2s ease;
-          letter-spacing: 0.2px;
         }
         .sr-success-home:hover {
-          background: #1a2540;
-          transform: translateY(-1px);
+          border-color: rgba(238,230,219,0.3);
+          color: rgba(238,230,219,0.85);
         }
       `}</style>
 
       <div className="sr-root">
         <Navbar />
 
-        {/* ── Back Button ── */}
-        <button className="sr-back" onClick={() => navigate("/")}>
-          <ArrowLeft size={16} />
-          Kembali ke Beranda
-        </button>
-
-        {/* ── Header ── */}
-        <div className="sr-header">
-          <div className="sr-header-glow" />
-
-          <div className="sr-eyebrow">
-            <div className="sr-eline" />
-            <span className="sr-etext">Aspirasi Anda</span>
-            <div className="sr-eline" />
-          </div>
-
-          <h1 className="sr-title">
-            Saran &amp;
-            <br />
-            <em>Pengaduan</em>
-          </h1>
-
-          <p className="sr-desc">
-            Sampaikan saran, kritik, atau pengaduanmu terkait acara ini.
-            Identitasmu terjaga sepenuhnya.
-          </p>
-
-          <div className="sr-anon">
-            <Lock size={14} className="sr-anon-icon" />
-            <span className="sr-anon-text">100% Anonim · Tanpa Identitas</span>
-          </div>
-        </div>
-
-        {/* ── Form Card ── */}
-        <div className="sr-card">
-          {feedbackStatus === "success" ? (
-            /* ── Success State ── */
-            <div className="sr-success">
-              <div className="sr-success-ring">
-                <CheckCircle2 size={38} />
-              </div>
-              <p className="sr-success-title">Terima Kasih!</p>
-              <p className="sr-success-sub">
-                Pesanmu telah diterima oleh panitia secara anonim. Masukan
-                kamu sangat berarti untuk acara yang lebih baik.
-              </p>
-              <button
-                className="sr-success-again"
-                onClick={() => setFeedbackStatus("idle")}
-              >
-                <RotateCcw size={13} />
-                Kirim lagi
-              </button>
-              <button
-                className="sr-success-home"
-                onClick={() => navigate("/")}
-              >
-                <ArrowLeft size={13} />
-                Kembali ke Beranda
-              </button>
+        {feedbackStatus === "success" ? (
+          /* ── Success State ── */
+          <div className="sr-success">
+            <div className="sr-success-ring">
+              <CheckCircle2 size={34} />
             </div>
-          ) : (
-            /* ── Form ── */
-            <>
-              {/* Type Selector */}
+            <p className="sr-success-title">Terima Kasih!</p>
+            <p className="sr-success-sub">
+              Pesanmu telah diterima secara anonim. Masukan kamu sangat berarti.
+            </p>
+            <button
+              className="sr-success-again"
+              onClick={() => setFeedbackStatus("idle")}>
+              <RotateCcw size={12} />
+              Kirim lagi
+            </button>
+            <button
+              className="sr-success-home"
+              onClick={() => navigate("/")}>
+              <ArrowLeft size={12} />
+              Kembali ke Beranda
+            </button>
+          </div>
+        ) : (
+          <>
+            {/* ── Header ── */}
+            <div className="sr-header">
+              <div className="sr-header-glow" />
+              <div className="sr-eyebrow">
+                <div className="sr-eline" />
+                <span className="sr-etext">Aspirasi Anda</span>
+                <div className="sr-eline" />
+              </div>
+              <h1 className="sr-title">
+                <em>Saran</em> &<br />
+                Pengaduan
+              </h1>
+              <p className="sr-desc">
+                Sampaikan saran, kritik, atau pengaduanmu. Identitasmu terjaga
+                sepenuhnya.
+              </p>
+              <div className="sr-anon">
+                <ShieldCheck size={12} className="sr-anon-icon" />
+                <span className="sr-anon-text">100% Anonim</span>
+              </div>
+            </div>
+
+            {/* ── Form ── */}
+            <div className="sr-form">
               <span className="sr-label">Jenis Pesan</span>
               <div className="sr-types">
                 {types.map(({ key, icon, label }) => (
                   <button
                     key={key}
                     className={`sr-type-btn${feedbackType === key ? " active" : ""}`}
-                    onClick={() => setFeedbackType(key)}
-                  >
-                    <span className="sr-type-icon">{icon}</span>
+                    onClick={() => setFeedbackType(key)}>
+                    <span>{icon}</span>
                     {label}
                   </button>
                 ))}
               </div>
 
-              {/* Textarea */}
               <span className="sr-label">Pesan Kamu</span>
               <textarea
                 className="sr-textarea"
                 placeholder={placeholders[feedbackType]}
                 value={feedbackMsg}
                 onChange={(e) => {
-                  if (e.target.value.length <= 500) setFeedbackMsg(e.target.value);
+                  if (e.target.value.length <= 500)
+                    setFeedbackMsg(e.target.value);
                 }}
                 maxLength={500}
               />
@@ -525,44 +488,45 @@ export default function Saran() {
                 {feedbackMsg.length} / 500
               </p>
 
-              {/* Error */}
               {feedbackStatus === "error" && (
                 <div className="sr-error">
-                  <AlertCircle size={15} />
-                  Gagal mengirim pesan. Coba lagi beberapa saat.
+                  <AlertCircle size={14} />
+                  Gagal mengirim. Coba lagi beberapa saat.
                 </div>
               )}
 
-              {/* Submit */}
               <button
                 className="sr-submit"
                 onClick={handleSubmit}
-                disabled={!feedbackMsg.trim() || feedbackStatus === "loading"}
-              >
+                disabled={!feedbackMsg.trim() || feedbackStatus === "loading"}>
                 {feedbackStatus === "loading" ? (
                   <>
-                    <Loader2 size={16} className="sr-spin" />
+                    <Loader2 size={15} className="sr-spin" />
                     Mengirim...
                   </>
                 ) : (
                   <>
-                    <Send size={15} />
+                    <Send size={14} />
                     Kirim {feedbackType}
                   </>
                 )}
               </button>
 
-              {/* Privacy note */}
               <div className="sr-privacy">
-                <ShieldCheck size={14} className="sr-privacy-icon" />
+                <ShieldCheck size={13} className="sr-privacy-icon" />
                 <p className="sr-privacy-text">
-                  Pesanmu dikirim tanpa nama, email, atau identitas apapun.
-                  Panitia tidak dapat mengetahui siapa pengirimnya.
+                  Pesanmu dikirim tanpa identitas apapun.
                 </p>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+
+            {/* ── Back Button ── */}
+            <button className="sr-back-btn" onClick={() => navigate("/")}>
+              <ArrowLeft size={14} />
+              Kembali ke Beranda
+            </button>
+          </>
+        )}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Peserta from "./pages/Peserta";
 import Galeri from "./pages/galeri";
 import Saran from "./pages/saran";
+import Berita from "./pages/Berita";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/galeri" element={<Galeri />} />
         <Route path="/peserta" element={<Peserta />} />
         <Route path="/saran" element={<Saran />} />
+        <Route path="/berita" element={<Berita />} />
       </Routes>
     </BrowserRouter>
   );
